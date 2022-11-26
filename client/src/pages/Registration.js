@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import axios from 'axios';
 
 const Registration = () => {
-
+    const navigate = useNavigate();
     const initialValues = { email: "", password: "", confirmPassword: "" };
     const [newUser, setNewUser] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const [data, setData] = useState({
+        user: {
+            email: "",
+            password: ""
+        }
 
-    //fonction handle on change pour les values des form
+    })
+
+    //fonction handle on change pour les values des forms
     const handleOnChange = (e) => {
         const { name, value } = e.target
         setNewUser({ ...newUser, [name]: value })
-        // console.log(newUser);
+        setData({ ...data, [e.target.name]: e.target.value });
     }
 
     //fonction handle on submit pour lorsque qu'on submit le formulaire et renvoi les erreurs s'ils y en a
@@ -22,6 +30,21 @@ const Registration = () => {
         setFormErrors(handleValidation(newUser))
         setIsSubmit(true);
         console.log(newUser);
+
+        axios.post("http://localhost:3001/api/auth/signup", {
+            email: data.email,
+            password: data.password
+        })
+            .then((res) => {
+                console.log("Server response: ", res);
+                if (res?.status === 200) {
+                    navigate('/home')
+                    localStorage.setItem('user', JSON.stringify(res.data))
+                }
+            })
+            .catch((err) => {
+                console.log("Server respondend with error: ", err);
+            })
     }
 
     useEffect(() => {
