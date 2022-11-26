@@ -10,11 +10,8 @@ const Registration = () => {
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [data, setData] = useState({
-        user: {
-            email: "",
-            password: ""
-        }
-
+        email: "",
+        password: ""
     })
 
     //fonction handle on change pour les values des forms

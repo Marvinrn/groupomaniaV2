@@ -21,7 +21,7 @@ exports.signup = (req, res,) => {
                         res.status(200).json({
                             user: {
                                 email: user.email,
-                                isAdmin: user.isAdmin
+                                // isAdmin: user.isAdmin
                             },
                             userId: user.id,
                             token: jwt.sign(
