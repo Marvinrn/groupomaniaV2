@@ -7,12 +7,12 @@ const Registration = () => {
     const navigate = useNavigate();
     const initialValues = { email: "", password: "", confirmPassword: "" };
     const [newUser, setNewUser] = useState(initialValues);
-    const [formErrors, setFormErrors] = useState({})
-    const [isSubmit, setIsSubmit] = useState(false)
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
     const [data, setData] = useState({
         email: "",
         password: ""
-    })
+    });
 
     //fonction handle on change pour les values des forms
     const handleOnChange = (e) => {

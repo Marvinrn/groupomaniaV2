@@ -1,21 +1,70 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import axios from 'axios';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const initialValues = { email: "", password: "" };
+    const [user, setUser] = useState(initialValues);
+    // const [isSubmit, setIsSubmit] = useState(false);
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    });
+
+    //fonction handle on change pour les values des forms
+    const handleOnChange = (e) => {
+        const { name, value } = e.target
+        setUser({ ...user, [name]: value })
+        setData({ ...data, [e.target.name]: e.target.value });
+    }
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        // setIsSubmit(true);
+
+        axios.post("http://localhost:3001/api/auth/login", {
+            email: data.email,
+            password: data.password
+        })
+            .then((res) => {
+                console.log("Server response: ", res);
+                if (res?.status === 200) {
+                    navigate('/home')
+                    localStorage.setItem('user', JSON.stringify(res.data))
+                }
+            })
+            .catch((err) => {
+                console.log("Server respondend with error: ", err);
+            })
+    }
+
+
+
     return (
         <div className="form">
             <NavBar />
             <section className="form__section">
                 <h1 className="form__title">Se connecter</h1>
-                <form className="form__form">
+                <form className="form__form" onSubmit={handleOnSubmit}>
                     <div className="input-wrapper">
-                        <input type="email" name="email" required />
+                        <input
+                            type="email"
+                            name="email"
+                            value={user.email}
+                            onChange={handleOnChange}
+                            required />
                         <span className="underline"></span>
                         <label>Adresse Mail</label>
                     </div>
                     <div className="input-wrapper">
-                        <input type="password" name="password" required />
+                        <input
+                            type="password"
+                            name="password"
+                            value={user.password}
+                            onChange={handleOnChange}
+                            required />
                         <span className="underline"></span>
                         <label>Mot de passe</label>
                     </div>
