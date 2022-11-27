@@ -1,0 +1,53 @@
+.topBar {
+    z-index: 1;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: $color-1;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+
+    &__logo {
+        height: 35px;
+    }
+
+    &__search {
+        text-align: center;
+        width: 30%;
+        height: 35px;
+        padding: 20px 30px;
+        outline: none;
+        border-radius: 25px;
+        border: none;
+        font-size: 1em;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+
+    }
+
+    &__link {
+        color: $color-2;
+        font-size: 1.1em;
+        margin: 0 15px;
+        padding: 10px;
+        background-color: $color-1;
+        border: 1px solid $color-1;
+        border-radius: 25px;
+
+        &:hover {
+            background-color: #434057;
+            border: 1px solid #2420386e;
+        }
+    }
+
+    &__icon {
+        height: 1.2em;
+    }
+}

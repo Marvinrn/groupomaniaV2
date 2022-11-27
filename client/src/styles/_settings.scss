@@ -2,9 +2,13 @@
 $font-1: 'Noto Sans TC',
     sans-serif;
 
-$color-1: #17202a;
+$color-1: #242038;
 $color-2: rgb(245, 245, 245);
 $color-3: rgb(70, 157, 191);
+$color-4: #725AC1;
+$color-5: #8D86C9;
+$color-6: #fdfaf6;
+$color-7: #F7ECE1;
 
 * {
     box-sizing: border-box;
@@ -14,7 +18,8 @@ $color-3: rgb(70, 157, 191);
 
 body {
     font-family: $font-1;
-    background-color: rgb(207, 207, 207);
+    background-color: $color-7;
+    // background-color: rgb(207, 207, 207);
 }
 
 a {

@@ -36,7 +36,8 @@ const Login = () => {
                 }
             })
             .catch((err) => {
-                console.log("Server respondend with error: ", err);
+                // console.log("Server respondend with error: ", err);
+                if (err.response) console.log(err.response.data);
             })
     }
 
@@ -56,6 +57,7 @@ const Login = () => {
                             onChange={handleOnChange}
                             required />
                         <span className="underline"></span>
+                        <p className="formErrorMsg">"Error message"</p>
                         <label>Adresse Mail</label>
                     </div>
                     <div className="input-wrapper">
@@ -66,6 +68,7 @@ const Login = () => {
                             onChange={handleOnChange}
                             required />
                         <span className="underline"></span>
+                        <p className="formErrorMsg">"Error message"</p>
                         <label>Mot de passe</label>
                     </div>
                     <div className="btn-wrapper">

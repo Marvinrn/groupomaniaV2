@@ -1,0 +1,103 @@
+.postMessage {
+    width: 40%;
+    margin: auto;
+    display: flex;
+    background-color: $color-6;
+    gap: 1rem;
+    padding: 3rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    &__avi {
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .input--flex {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        gap: 1rem;
+    }
+
+    &__input {
+        background-color: $color-6;
+        padding: 10px;
+        font-size: 17px;
+        border: none;
+        border-bottom: 1px solid $color-1;
+        outline: none;
+    }
+
+    .previewImg {
+        position: relative;
+
+        &__icon {
+            color: $color-6;
+            font-size: 1em;
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            padding: 10px;
+            padding-left: 13px;
+            padding-right: 13px;
+            background-color: #242038da;
+            border-radius: 25px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #434057d7;
+            }
+        }
+
+        img {
+            width: 100%;
+            max-height: 20rem;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+    }
+
+
+    &__img {
+        display: none;
+    }
+
+    &__options {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .option {
+        color: $color-1;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    &__btn {
+        margin-left: 10px;
+        padding: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: $color-1;
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.5s ease;
+
+        &:hover {
+            transform: scale(1.10);
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+}
