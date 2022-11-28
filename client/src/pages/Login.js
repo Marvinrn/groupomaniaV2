@@ -7,7 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
     const initialValues = { email: "", password: "" };
     const [user, setUser] = useState(initialValues);
-    // const [isSubmit, setIsSubmit] = useState(false);
+    const [error, setError] = useState(null);
     const [data, setData] = useState({
         email: "",
         password: ""
@@ -37,7 +37,9 @@ const Login = () => {
             })
             .catch((err) => {
                 // console.log("Server respondend with error: ", err);
-                if (err.response) console.log(err.response.data);
+                if (err.response) {
+                    setError(err.response.data.message)
+                }
             })
     }
 
@@ -57,7 +59,7 @@ const Login = () => {
                             onChange={handleOnChange}
                             required />
                         <span className="underline"></span>
-                        <p className="formErrorMsg">"Error message"</p>
+                        <p className="formErrorMsg">{error}</p>
                         <label>Adresse Mail</label>
                     </div>
                     <div className="input-wrapper">
@@ -68,7 +70,6 @@ const Login = () => {
                             onChange={handleOnChange}
                             required />
                         <span className="underline"></span>
-                        <p className="formErrorMsg">"Error message"</p>
                         <label>Mot de passe</label>
                     </div>
                     <div className="btn-wrapper">

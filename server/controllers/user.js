@@ -9,31 +9,39 @@ const User = require('../models/users');
 require('dotenv').config();
 
 exports.signup = (req, res,) => {
-    bcrypt.hash(req.body.password, 10)
-        .then(hash => {
-            const user = new User({
-                email: req.body.email,
-                password: hash,
-            })
-            user.save()
-                .then(response => {
-                    if (response) {
-                        res.status(200).json({
-                            user: {
-                                email: user.email,
-                                // isAdmin: user.isAdmin
-                            },
-                            userId: user.id,
-                            token: jwt.sign(
-                                { userId: user.id },
-                                process.env.MY_TOKEN,
-                                { expiresIn: '24h' }
-                            )
-                        })
-                    }
+    // on cherche si un utilisateur à deja la même adresse mail, si oui on envoi un erreur
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            if (user) {
+                return res.status(401).json({ message: 'Adresse email déjà utilisée !' })
+            }
+            bcrypt.hash(req.body.password, 10)
+                .then(hash => {
+                    const user = new User({
+                        email: req.body.email,
+                        password: hash,
+                    })
+                    user.save()
+                        .then(response => {
+                            if (response) {
+                                res.status(200).json({
+                                    user: {
+                                        email: user.email,
+                                        // isAdmin: user.isAdmin
+                                    },
+                                    userId: user.id,
+                                    token: jwt.sign(
+                                        { userId: user.id },
+                                        process.env.MY_TOKEN,
+                                        { expiresIn: '24h' }
+                                    )
+                                })
+                            }
 
+                        })
+                        .catch(error => res.status(401).json({ error }))
                 })
-                .catch(error => res.status(401).json({ error }))
+                .catch(error => res.status(500).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
 };

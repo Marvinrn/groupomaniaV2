@@ -8,6 +8,7 @@ const Registration = () => {
     const initialValues = { email: "", password: "", confirmPassword: "" };
     const [newUser, setNewUser] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
+    const [error, setError] = useState(null);
     const [isSubmit, setIsSubmit] = useState(false);
     const [data, setData] = useState({
         email: "",
@@ -34,13 +35,15 @@ const Registration = () => {
         })
             .then((res) => {
                 console.log("Server response: ", res);
-                if (res?.status === 200) {
+                if (res.status === 200) {
                     navigate('/home')
                     localStorage.setItem('user', JSON.stringify(res.data))
                 }
             })
             .catch((err) => {
-                console.log("Server respondend with error: ", err);
+                if (err.response) {
+                    setError(err.response.data.message)
+                }
             })
     }
 
@@ -66,23 +69,23 @@ const Registration = () => {
         }
 
         if (!regexHasUpper.test(values.password)) {
-            errors.password = " Mot de pass doit contenir au moins une majuscule !  "
+            errors.password = " Mot de passe doit contenir au moins une majuscule !  "
         }
 
         if (!regexHasLower.test(values.password)) {
-            errors.password = " Mot de pass doit contenir au moins une minuscule !  "
+            errors.password = " Mot de passe doit contenir au moins une minuscule !  "
         }
 
         if (!regexHasNumber.test(values.password)) {
-            errors.password = " Mot de pass doit contenir au moins un chiffre !  "
+            errors.password = " Mot de passe doit contenir au moins un chiffre !  "
         }
 
         if (!isLengthy) {
-            errors.password = " Mot de pass doit contenir minimum 8 caractères !"
+            errors.password = " Mot de passe doit contenir minimum 8 caractères !"
         }
 
         if (values.password !== values.confirmPassword) {
-            errors.confirmPassword = "Les mots de pass ne correspondent pas !"
+            errors.confirmPassword = "Les mots de passe ne correspondent pas !"
         }
 
         return errors;
@@ -103,7 +106,7 @@ const Registration = () => {
                             required />
                         <span className="underline"></span>
                         <p className="formErrorMsg" >
-                            {formErrors.email}
+                            {formErrors.email} {error}
                         </p>
                         <label>Adresse Mail</label>
                     </div>
