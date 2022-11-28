@@ -108,6 +108,11 @@
         }
     }
 
+    .submitBtn:disabled {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
     &__phrase {
         text-align: center;
         color: black;
