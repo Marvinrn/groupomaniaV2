@@ -31,7 +31,7 @@ const Registration = () => {
 
         axios.post("http://localhost:3001/api/auth/signup", {
             email: data.email,
-            password: data.password
+            password: data.password,
         })
             .then((res) => {
                 console.log("Server response: ", res);
@@ -45,6 +45,8 @@ const Registration = () => {
                     setError(err.response.data.message)
                 }
             })
+
+
     }
 
     useEffect(() => {
@@ -62,7 +64,8 @@ const Registration = () => {
         const regexHasUpper = /[A-Z]/;
         const regexHasLower = /[a-z]/;
         const regexHasNumber = /[0-9]/;
-        const isLengthy = values.password.length > 9
+        const regexHasSpecial = /(?=.*?[#?!@$%^&*-])/;
+        const isLengthy = values.password.length > 8
 
         if (!regexEmail.test(values.email)) {
             errors.email = " Adresse mail invalide ! "
@@ -80,8 +83,12 @@ const Registration = () => {
             errors.password = " Mot de passe doit contenir au moins un chiffre !  "
         }
 
+        if (!regexHasSpecial.test(values.password)) {
+            errors.password = " Mot de passe doit contenir au moins un caractère spécial (?=.*?[#?!@$%^&*-]) !  "
+        }
+
         if (!isLengthy) {
-            errors.password = " Mot de passe doit contenir minimum 8 caractères !"
+            errors.password = " Mot de passe doit contenir minimum 9 caractères !"
         }
 
         if (values.password !== values.confirmPassword) {
