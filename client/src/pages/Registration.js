@@ -144,7 +144,7 @@ const Registration = () => {
                         <label>Confirmer le mot de passe</label>
                     </div>
                     <div className="btn-wrapper">
-                        <button className="submitBtn" type="submit">Confirmer</button>
+                        <button className="submitBtn" type="submit" disabled={newUser.password !== newUser.confirmPassword ? true : false} >Confirmer</button>
                     </div>
                 </form>
                 <p className="form__phrase">Vous avez deja un compte?<Link className="form__link" to="/login">identifiez vous!
