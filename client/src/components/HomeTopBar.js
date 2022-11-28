@@ -3,7 +3,7 @@ import GroupomaniaLogo from '../assets/icon-left-font-monochrome-white.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 const HomeTopBar = () => {
     return (
@@ -26,7 +26,7 @@ const HomeTopBar = () => {
                 </a>
 
                 <a href='/home' className="topBar__link">
-                    <FontAwesomeIcon className='topBar__icon' icon={faBars} />
+                    <FontAwesomeIcon className='topBar__icon' icon={faPowerOff} />
                 </a>
 
             </nav>

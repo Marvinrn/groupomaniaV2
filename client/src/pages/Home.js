@@ -9,6 +9,10 @@ const Home = () => {
             <HomeTopBar />
             <HomePostMessage />
             <HomeContent />
+            <HomeContent />
+            <HomeContent />
+            <HomeContent />
+            <HomeContent />
         </div>
     );
 };
