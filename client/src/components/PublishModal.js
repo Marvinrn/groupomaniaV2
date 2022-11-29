@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import HomePostMessage from './HomePostMessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 
 const PublishModal = ({ modalIsClose }) => {
@@ -22,7 +24,7 @@ const PublishModal = ({ modalIsClose }) => {
     return (
         <div className='modal__background'>
             <div ref={modalRef} className='modal__container'>
-                <button onClick={() => { modalIsClose(false) }}> X </button>
+                <FontAwesomeIcon className='modal__xmarkIcon' icon={faXmark} onClick={() => { modalIsClose(false) }} />
                 <HomePostMessage className='modal__post' />
             </div>
         </div>

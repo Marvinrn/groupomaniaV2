@@ -36,7 +36,7 @@ const HomePostMessage = () => {
                 )}
                 <div className='postMessage__options'>
                     <div className='option' onClick={() => imageRef.current.click()}>
-                        <FontAwesomeIcon icon={faImage} />
+                        <FontAwesomeIcon className='option__icon' icon={faImage} />
                         <p>Photo / Video</p>
                     </div>
                     <div className='option'>

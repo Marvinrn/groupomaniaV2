@@ -80,9 +80,18 @@
         padding-right: 10px;
         border-radius: 10px;
         align-items: center;
-        justify-content: center;
         cursor: pointer;
         font-size: 0.9em;
+        transition: transform ease 1s;
+
+        &__icon {
+            font-size: 1.1em;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
 
     }
 

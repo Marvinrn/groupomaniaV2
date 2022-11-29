@@ -7,9 +7,22 @@
     height: 100%;
     z-index: 1;
 
+    .modal__xmarkIcon {
+        color: $color-6;
+        font-size: 1em;
+        position: relative;
+        left: 42.3rem;
+        top: 9rem;
+        padding: 10px;
+        padding-left: 13px;
+        padding-right: 13px;
+        background: linear-gradient(0.25turn, #0f0c29, #302b63, #24243e);
+        border-radius: 25px;
+        cursor: pointer;
 
-    &__container {
-        width: 500px;
+        &:hover {
+            opacity: 0.8;
+        }
     }
 
     .modalPostMessage {
