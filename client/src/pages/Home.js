@@ -2,6 +2,7 @@ import React from 'react';
 import HomeContent from '../components/HomeContent';
 import HomePostMessage from '../components/HomePostMessage';
 import HomeTopBar from '../components/HomeTopBar';
+import PostMessageBtn from '../components/PostMessageBtn';
 
 const Home = () => {
     return (
@@ -9,10 +10,7 @@ const Home = () => {
             <HomeTopBar />
             <HomePostMessage />
             <HomeContent />
-            <HomeContent />
-            <HomeContent />
-            <HomeContent />
-            <HomeContent />
+            <PostMessageBtn />
         </div>
     );
 };

@@ -1,0 +1,28 @@
+.publish__btn {
+    position: fixed;
+    margin-left: 5%;
+    margin-bottom: 3%;
+    color: $color-1;
+    bottom: 10px;
+    border-radius: 15px;
+
+    &>button {
+        margin-left: 10px;
+        padding: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        font-size: 1.7em;
+        font-weight: bold;
+        background: linear-gradient(0.25turn, #6190E8, #A7BFE8);
+        border: none;
+        border-radius: 10px;
+        transition: transform 0.5s ease;
+
+        &:hover {
+            transform: scale(1.10);
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+}

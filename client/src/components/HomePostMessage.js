@@ -20,10 +20,10 @@ const HomePostMessage = () => {
     }
 
     return (
-        <div className='postMessage'>
+        <div className='postMessage modalPostMessage'>
             <img className='postMessage__avi' src={Avi} alt='' />
             <div className='input--flex'>
-                <input
+                <textarea
                     className='postMessage__input'
                     type='text'
                     placeholder='Quoi de neuf?'
@@ -37,6 +37,7 @@ const HomePostMessage = () => {
                 <div className='postMessage__options'>
                     <div className='option' onClick={() => imageRef.current.click()}>
                         <FontAwesomeIcon icon={faImage} />
+                        <p>Photo / Video</p>
                     </div>
                     <div className='option'>
                         <p>GIF</p>

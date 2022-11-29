@@ -8,12 +8,14 @@
     flex-direction: column;
     background-color: $color-6;
     gap: 1rem;
-    padding: 3rem;
-    border-radius: 1rem;
+    padding: 0rem;
+    border-radius: 10px;
 
     .user--flex {
         display: flex;
         align-items: center;
+        padding-top: 10px;
+        padding-left: 25px;
 
         .user__avi {
             border-radius: 50%;
@@ -30,46 +32,63 @@
 
     &__text {
         font-size: 0.9em;
-        padding-left: 15px;
+        padding-left: 25px;
         white-space: pre-wrap;
         overflow-wrap: break-word;
     }
 
     &__img {
-        width: 100%;
-        max-height: 20rem;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: cover;
-        border-radius: 15px;
     }
 
     .like__section {
         display: flex;
         justify-content: space-between;
         padding-top: 10px;
+        padding-bottom: 10px;
         padding-left: 25px;
         border-top: 1px solid $color-1;
     }
 
-    .like__btn {
-        margin-right: 3px;
-        font-size: 1.3em;
-        color: gray;
-        cursor: pointer;
-        transition: 1s transform ease;
+    .post__btn {
+        display: flex;
 
-        &:hover {
-            transform: scale(1.2);
+        .post__like {
+            margin-right: 3px;
+            font-size: 1.3em;
+            color: $color-1;
+            cursor: pointer;
+            transition: 1s transform ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
+        .post__comment {
+            margin-left: 25px;
+            font-size: 1.2em;
+            color: $color-1;
         }
     }
 
+
     .btnIsVisible {
         margin-left: 10px;
-        padding: 10px;
-        font-size: 1em;
+        margin-right: 25px;
+        padding: 5px 10px;
+        font-size: 0.9em;
+        font-weight: bold;
         color: white;
-        background-color: $color-1;
+        background: linear-gradient(0.25turn, #0f0c29, #302b63, #24243e);
         border-radius: 10px;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 }
