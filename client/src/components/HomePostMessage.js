@@ -10,7 +10,8 @@ const HomePostMessage = () => {
     const [image, setImage] = useState(null)
     const imageRef = useRef()
     const content = useRef()
-    const { user } = JSON.parse(localStorage.getItem('user'))
+    const { user } = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const OnImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
@@ -21,6 +22,10 @@ const HomePostMessage = () => {
 
     console.log(user.userId);
 
+    const reset = () => {
+        setImage(null);
+        content.current.value = ''
+    }
 
     const postHandleOnClick = (e) => {
         e.preventDefault();
@@ -29,8 +34,7 @@ const HomePostMessage = () => {
             imageUrl: imageRef.current.value
         };
         console.log(postData);
-        const Post = []
-        const token = JSON.parse(localStorage.getItem('token'));
+        const Posts = []
 
         if (postData.content.trim() === '') return
         const formData = new FormData()
@@ -46,8 +50,8 @@ const HomePostMessage = () => {
             }
         })
             .then((res) => {
-                Post.push(res.data);
-                window.location.reload();
+                Posts.push(res.data);
+                reset()
                 console.log(res.data);
             })
             .catch((err) => {
