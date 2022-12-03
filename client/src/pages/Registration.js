@@ -38,6 +38,7 @@ const Registration = () => {
                 if (res.status === 200) {
                     navigate('/home')
                     localStorage.setItem('user', JSON.stringify(res.data))
+                    localStorage.setItem('token', JSON.stringify(res.data.token))
                 }
             })
             .catch((err) => {

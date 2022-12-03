@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import Avi from '../assets/icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
@@ -8,16 +9,53 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 const HomePostMessage = () => {
     const [image, setImage] = useState(null)
     const imageRef = useRef()
-
+    const content = useRef()
+    const { user } = JSON.parse(localStorage.getItem('user'))
 
     const OnImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            let imgage = e.target.files[0];
-            setImage({
-                image: URL.createObjectURL(imgage)
-            })
+            let image = e.target.files[0];
+            setImage(image)
         }
     }
+
+    console.log(user.userId);
+
+
+    const postHandleOnClick = (e) => {
+        e.preventDefault();
+        const postData = {
+            content: content.current.value,
+            imageUrl: imageRef.current.value
+        };
+        console.log(postData);
+        const Post = []
+        const token = JSON.parse(localStorage.getItem('token'));
+
+        if (postData.content.trim() === '') return
+        const formData = new FormData()
+        formData.append("content", postData.content)
+        if (postData.imageUrl !== "") {
+            formData.append("imageUrl", postData.imageUrl)
+        }
+
+        axios.post('http://localhost:3001/api/post/', formData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then((res) => {
+                Post.push(res.data);
+                window.location.reload();
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log("Server response: ", err)
+            })
+
+    }
+
 
     return (
         <div className='postMessage modalPostMessage'>
@@ -27,11 +65,14 @@ const HomePostMessage = () => {
                     className='postMessage__input'
                     type='text'
                     placeholder='Quoi de neuf?'
+                    ref={content}
+                    required
+                // onChange={""}
                 />
                 {image && (
                     <div className='previewImg'>
                         <FontAwesomeIcon onClick={() => setImage(null)} className='previewImg__icon' icon={faXmark} />
-                        <img src={image.image} alt='' />
+                        <img src={URL.createObjectURL(image)} alt='' />
                     </div>
                 )}
                 <div className='postMessage__options'>
@@ -42,7 +83,7 @@ const HomePostMessage = () => {
                     <div className='option'>
                         <p>GIF</p>
                     </div>
-                    <button className='postMessage__btn'>
+                    <button className='postMessage__btn' onClick={postHandleOnClick}>
                         Publier
                     </button>
                 </div>

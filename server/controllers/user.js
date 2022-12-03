@@ -30,12 +30,14 @@ exports.signup = (req, res,) => {
                             .then(response => {
                                 if (response) {
                                     res.status(200).json({
-                                        email: user.email,
-                                        userId: user.id,
+                                        user: {
+                                            email: user.email,
+                                            userId: user.id,
+                                            // isAdmin: user.isAdmin
+                                        },
                                         token: jwt.sign(
                                             { userId: user.id },
                                             process.env.MY_TOKEN,
-                                            { expiresIn: '24h' }
                                         )
                                     })
                                 }
@@ -68,13 +70,12 @@ exports.login = (req, res,) => {
                     res.status(200).json({
                         user: {
                             email: user.email,
+                            userId: user.id,
                             // isAdmin: user.isAdmin
                         },
-                        userId: user.id,
                         token: jwt.sign(
                             { userId: user.id },
                             process.env.MY_TOKEN,
-                            { expiresIn: '24h' }
                         )
                     });
                 })
