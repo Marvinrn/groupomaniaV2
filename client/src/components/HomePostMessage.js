@@ -15,8 +15,8 @@ const HomePostMessage = () => {
 
     const OnImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            let image = e.target.files[0];
-            setImage(image)
+            let myImage = e.target.files[0];
+            setImage(myImage)
         }
     }
 
@@ -27,7 +27,7 @@ const HomePostMessage = () => {
         content.current.value = ''
     }
 
-    const postHandleOnClick = (e) => {
+    const postHandleOnSubmit = (e) => {
         e.preventDefault();
         const postData = {
             content: content.current.value,
@@ -39,7 +39,7 @@ const HomePostMessage = () => {
         if (postData.content.trim() === '') return
         const formData = new FormData()
         formData.append("content", postData.content)
-        if (postData.imageUrl !== "") {
+        if (image) {
             formData.append("imageUrl", postData.imageUrl)
         }
 
@@ -62,7 +62,11 @@ const HomePostMessage = () => {
 
 
     return (
-        <div className='postMessage modalPostMessage'>
+        <form
+            className='postMessage modalPostMessage'
+            onSubmit={postHandleOnSubmit}
+            encType='multipart/form-data'
+        >
             <img className='postMessage__avi' src={Avi} alt='' />
             <div className='input--flex'>
                 <textarea
@@ -71,7 +75,6 @@ const HomePostMessage = () => {
                     placeholder='Quoi de neuf?'
                     ref={content}
                     required
-                // onChange={""}
                 />
                 {image && (
                     <div className='previewImg'>
@@ -87,20 +90,20 @@ const HomePostMessage = () => {
                     <div className='option'>
                         <p>GIF</p>
                     </div>
-                    <button className='postMessage__btn' onClick={postHandleOnClick}>
+                    <button type='submit' className='postMessage__btn'>
                         Publier
                     </button>
                 </div>
                 <div className='postMessage__img'>
                     <input
                         type='file'
-                        name='myImage'
-                        ref={imageRef}
+                        name='image'
                         onChange={OnImageChange}
+                        ref={imageRef}
                     />
                 </div>
             </div>
-        </div>
+        </form>
     );
 };
 

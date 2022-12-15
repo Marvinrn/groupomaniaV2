@@ -4,7 +4,6 @@ const User = require('../models/users');
 
 exports.createPost = (req, res) => {
     const postObject = req.body
-    console.log(req.file);
     postObject.content = postObject.content.trim()
     User.findById(req.auth, function (error, user) {
         const post = new Post({
@@ -21,6 +20,7 @@ exports.createPost = (req, res) => {
             .then(() => res.status(201).json(post))
             .catch(error => res.status(400).json({ error }));
     })
+    console.log(req.file);
 }
 
 exports.updatePost = (req, res) => {
@@ -63,7 +63,7 @@ exports.deletePost = (req, res) => {
 }
 
 exports.getPost = (req, res,) => {
-    Post.find()
+    Post.find().sort({ _id: -1 })
         .then(async posts => {
             res.status(200).json(posts)
         })
