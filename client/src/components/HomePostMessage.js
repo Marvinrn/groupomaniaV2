@@ -13,10 +13,14 @@ const HomePostMessage = () => {
     const { user } = JSON.parse(localStorage.getItem('user'));
     const token = JSON.parse(localStorage.getItem('token'));
 
+    // const OnImageChange = (e) => {
+    //     setImage(e.target.files[0])
+    // }
     const OnImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            let myImage = e.target.files[0];
-            setImage(myImage)
+        if (e.target && e.target.files[0]) {
+            let image = e.target.files[0];
+            setImage(image)
+            console.log(e.target.files);
         }
     }
 
@@ -27,11 +31,11 @@ const HomePostMessage = () => {
         content.current.value = ''
     }
 
-    const postHandleOnSubmit = (e) => {
+    const postHandleOnClick = (e) => {
         e.preventDefault();
         const postData = {
             content: content.current.value,
-            imageUrl: imageRef.current.value
+            image: image
         };
         console.log(postData);
         const Posts = []
@@ -40,12 +44,12 @@ const HomePostMessage = () => {
         const formData = new FormData()
         formData.append("content", postData.content)
         if (image) {
-            formData.append("imageUrl", postData.imageUrl)
+            formData.append("imageUrl", postData.image)
         }
 
         axios.post('http://localhost:3001/api/post/', formData, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             }
         })
@@ -62,11 +66,7 @@ const HomePostMessage = () => {
 
 
     return (
-        <form
-            className='postMessage modalPostMessage'
-            onSubmit={postHandleOnSubmit}
-            encType='multipart/form-data'
-        >
+        <form encType="multipart/form-data" className='postMessage modalPostMessage'>
             <img className='postMessage__avi' src={Avi} alt='' />
             <div className='input--flex'>
                 <textarea
@@ -75,6 +75,7 @@ const HomePostMessage = () => {
                     placeholder='Quoi de neuf?'
                     ref={content}
                     required
+                // onChange={""}
                 />
                 {image && (
                     <div className='previewImg'>
@@ -90,14 +91,14 @@ const HomePostMessage = () => {
                     <div className='option'>
                         <p>GIF</p>
                     </div>
-                    <button type='submit' className='postMessage__btn'>
+                    <button className='postMessage__btn' onClick={postHandleOnClick}>
                         Publier
                     </button>
                 </div>
                 <div className='postMessage__img'>
                     <input
                         type='file'
-                        name='image'
+                        name='imageUrl'
                         onChange={OnImageChange}
                         ref={imageRef}
                     />
