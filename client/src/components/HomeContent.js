@@ -11,6 +11,8 @@ const HomeContent = () => {
     const token = JSON.parse(localStorage.getItem('token'));
     const [posts, setPosts] = useState([])
 
+
+
     useEffect(() => {
         fetchPosts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,20 +31,35 @@ const HomeContent = () => {
             })
     }
 
-    // const handleOnDelete = (id) => {
-    //     axios.delete('http://localhost:3001/api/post/' + id, {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${token}`
-    //         }
-    //     })
-    //         .then((res) => {
-    //             console.log(res);
-    //             fetchPosts()
-    //         })
-    //         .catch((err) => { console.log(err) })
-    // }
+    const handleOnDelete = (id) => {
+        axios.delete('http://localhost:3001/api/post/' + id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then((res) => {
+                console.log(res);
+                fetchPosts()
+            })
+            .catch((err) => { console.log(err) })
+    }
 
+
+    const handleOnLike = (id) => {
+
+        axios.post(`http://localhost:3001/api/post${id}/like`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => { console.log(err) })
+
+    }
 
     return (
         <article >
@@ -56,10 +73,10 @@ const HomeContent = () => {
                     <img src={post.imageUrl} alt='' className='content__img' />
                     <div className='like__section'>
                         <div className='post__btn'>
-                            <p><FontAwesomeIcon icon={faHeart} className='post__like' /> {post.likes} </p>
+                            <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnLike(post._id) }} /> {post.likes} </p>
                             <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0</p>
                         </div>
-                        <button className='btnIsVisible'>Supprimer</button>
+                        <button className='btnIsVisible' onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
                     </div>
                 </div>
             ))}

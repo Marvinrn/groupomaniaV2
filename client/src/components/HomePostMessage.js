@@ -10,12 +10,10 @@ const HomePostMessage = () => {
     const [image, setImage] = useState(null)
     const imageRef = useRef()
     const content = useRef()
-    const { user } = JSON.parse(localStorage.getItem('user'));
+    // const { user } = JSON.parse(localStorage.getItem('user'));
     const token = JSON.parse(localStorage.getItem('token'));
 
-    // const OnImageChange = (e) => {
-    //     setImage(e.target.files[0])
-    // }
+
     const OnImageChange = (e) => {
         if (e.target && e.target.files[0]) {
             let image = e.target.files[0];
@@ -24,7 +22,7 @@ const HomePostMessage = () => {
         }
     }
 
-    console.log(user.userId);
+    // console.log(user.userId);
 
     const reset = () => {
         setImage(null);
@@ -57,6 +55,7 @@ const HomePostMessage = () => {
                 Posts.push(res.data);
                 reset()
                 console.log(res.data);
+                window.location.reload(true);
             })
             .catch((err) => {
                 console.log("Server response: ", err)
