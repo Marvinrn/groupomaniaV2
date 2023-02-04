@@ -13,6 +13,7 @@ const HomeContent = () => {
     const [posts, setPosts] = useState([])
 
 
+
     useEffect(() => {
         fetchPosts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,15 +48,12 @@ const HomeContent = () => {
 
 
 
-
+    // fonction pour ajouter un like au post
     const handleOnLike = (id) => {
-
         const data = {
             userId: user.userId,
             like: 1
         }
-
-        // console.log(post.likes);
         axios.post('http://localhost:3001/api/post/' + id + '/like', data, {
             headers: {
                 'Content-Type': 'application/json',
@@ -64,19 +62,18 @@ const HomeContent = () => {
         })
             .then((res) => {
                 console.log(res.data);
+                fetchPosts()
             })
             .catch((err) => { console.log(err) })
 
     }
 
+    // fonction pour retirer un like au post
     const handleOnUnlike = (id) => {
-
         const data = {
             userId: user.userId,
             like: 0
         }
-
-        // console.log(post.likes);
         axios.post('http://localhost:3001/api/post/' + id + '/like', data, {
             headers: {
                 'Content-Type': 'application/json',
@@ -85,11 +82,11 @@ const HomeContent = () => {
         })
             .then((res) => {
                 console.log(res.data);
+                fetchPosts()
             })
             .catch((err) => { console.log(err) })
 
     }
-
 
 
     return (
@@ -104,7 +101,11 @@ const HomeContent = () => {
                     <img src={post.imageUrl} alt='' className='content__img' />
                     <div className='like__section'>
                         <div className='post__btn'>
-                            <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnLike(post._id) }} /> {post.likes} </p>
+                            {post.usersLiked.includes(user.userId) ?
+                                <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnUnlike(post._id) }} /> {post.likes} </p>
+                                :
+                                <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnLike(post._id) }} /> {post.likes} </p>
+                            }
                             <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0</p>
                         </div>
                         <button className='btnIsVisible' onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
