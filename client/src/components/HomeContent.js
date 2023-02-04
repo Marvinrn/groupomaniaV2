@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const HomeContent = () => {
     const token = JSON.parse(localStorage.getItem('token'));
+    const { user } = JSON.parse(localStorage.getItem('user'));
     const [posts, setPosts] = useState([])
-
 
 
     useEffect(() => {
@@ -46,20 +46,51 @@ const HomeContent = () => {
     }
 
 
+
+
     const handleOnLike = (id) => {
 
-        axios.post(`http://localhost:3001/api/post${id}/like`, {
+        const data = {
+            userId: user.userId,
+            like: 1
+        }
+
+        // console.log(post.likes);
+        axios.post('http://localhost:3001/api/post/' + id + '/like', data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
             .then((res) => {
-                console.log(res);
+                console.log(res.data);
             })
             .catch((err) => { console.log(err) })
 
     }
+
+    const handleOnUnlike = (id) => {
+
+        const data = {
+            userId: user.userId,
+            like: 0
+        }
+
+        // console.log(post.likes);
+        axios.post('http://localhost:3001/api/post/' + id + '/like', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => { console.log(err) })
+
+    }
+
+
 
     return (
         <article >

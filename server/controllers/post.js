@@ -83,7 +83,7 @@ exports.likePost = (req, res) => {
                         $inc: { likes: +1 }
                     }
                 )
-                    .then(() => res.status(200).json({ message: 'Sauce liked' }))
+                    .then(() => res.status(200).json({ message: 'post liked' }))
                     .catch((error) => res.status(400).json({ error }));
             }
         })
@@ -91,8 +91,8 @@ exports.likePost = (req, res) => {
 
     if (like == 0) {
         Post.findOne({ _id: req.params.id })
-            .then((sauce) => {
-                if (sauce.usersLiked.includes(req.body.userId)) {
+            .then((post) => {
+                if (post.usersLiked.includes(req.body.userId)) {
                     Post.updateOne({ _id: req.params.id },
                         {
                             $pull: { usersLiked: req.body.userId },
