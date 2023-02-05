@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Avi from '../assets/icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+// import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-regular-svg-icons'
 import axios from 'axios';
 
@@ -102,13 +103,14 @@ const HomeContent = () => {
                     <div className='like__section'>
                         <div className='post__btn'>
                             {post.usersLiked.includes(user.userId) ?
-                                <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnUnlike(post._id) }} /> {post.likes} </p>
+                                <p><FontAwesomeIcon icon={faHeart} className={post.usersLiked.includes(user.userId) ? 'post__likeOnclick' : 'post__like'} onClick={() => { handleOnUnlike(post._id) }} /> {post.likes} </p>
                                 :
                                 <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnLike(post._id) }} /> {post.likes} </p>
                             }
                             <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0</p>
                         </div>
-                        <button className='btnIsVisible' onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
+                        <button className={post.userId === user.userId ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
+                        { }
                     </div>
                 </div>
             ))}

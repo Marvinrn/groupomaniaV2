@@ -56,16 +56,31 @@
         display: flex;
 
         .post__like {
+            opacity: 0.5;
             margin-right: 3px;
             font-size: 1.3em;
             color: $color-1;
             cursor: pointer;
-            transition: 1s transform ease;
+            transition: 0.5s ease;
 
             &:hover {
-                transform: scale(1.2);
+                transform: scale(1.08);
             }
         }
+
+        .post__likeOnclick {
+            margin-right: 3px;
+            font-size: 1.3em;
+            // background: linear-gradient(0.25turn, #6190E8, #A7BFE8);
+            color: #6190E8;
+            cursor: pointer;
+            transition: 0.5s ease;
+
+            &:hover {
+                transform: scale(1.08);
+            }
+        }
+
 
         .post__comment {
             margin-left: 25px;
@@ -90,5 +105,9 @@
         &:hover {
             opacity: 0.8;
         }
+    }
+
+    .btnIsNotVisible {
+        display: none;
     }
 }
