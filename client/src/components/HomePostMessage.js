@@ -12,6 +12,7 @@ const HomePostMessage = () => {
     const content = useRef()
     // const { user } = JSON.parse(localStorage.getItem('user'));
     const token = JSON.parse(localStorage.getItem('token'));
+    const [count, setCount] = useState(0)
 
 
     const OnImageChange = (e) => {
@@ -64,6 +65,7 @@ const HomePostMessage = () => {
     }
 
 
+
     return (
         <form encType="multipart/form-data" className='postMessage modalPostMessage'>
             <img className='postMessage__avi' src={Avi} alt='' />
@@ -74,8 +76,10 @@ const HomePostMessage = () => {
                     placeholder='Quoi de neuf?'
                     ref={content}
                     required
-                // onChange={""}
+                    onChange={e => setCount(e.target.value.length)}
+                    maxLength='280'
                 />
+                <p className={count >= 200 ? 'count200' : "count"}>{count}/280</p>
                 {image && (
                     <div className='previewImg'>
                         <FontAwesomeIcon onClick={() => setImage(null)} className='previewImg__icon' icon={faXmark} />
