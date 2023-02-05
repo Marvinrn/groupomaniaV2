@@ -6,6 +6,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 const HomeTopBar = () => {
+
+    const logout = () => {
+        localStorage.clear()
+    }
+
     return (
         <div className="topBar">
             <img className="topBar__logo" src={GroupomaniaLogo}
@@ -25,7 +30,7 @@ const HomeTopBar = () => {
                     <FontAwesomeIcon className='topBar__icon' icon={faUser} />
                 </a>
 
-                <a href='/home' className="topBar__link">
+                <a href='/' className="topBar__link" onClick={logout}>
                     <FontAwesomeIcon className='topBar__icon' icon={faPowerOff} />
                 </a>
 
