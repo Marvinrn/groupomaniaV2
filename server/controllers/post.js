@@ -35,6 +35,7 @@ exports.updatePost = (req, res) => {
 }
 
 exports.deletePost = (req, res) => {
+    // on trouve l'objet dans la base de donnée
     Post.findById(req.params.id, function (error, post) {
         if (error) {
             return res.status(500).json({ error })
@@ -42,7 +43,8 @@ exports.deletePost = (req, res) => {
         if (!post) {
             return res.status(404).json({ message: 'Objet non trouvé' })
         }
-        if (post.userId !== req.auth) {
+        // on verifie que uniquement la personne qui a crée l'objet peut le supprimer
+        if (res.locals.userId !== post.userId && res.locals.isAdmin !== true) {
             return res.status(401).json({ message: 'Requête non autorisée' })
         }
         if (req.file) {

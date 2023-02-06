@@ -36,7 +36,7 @@ exports.signup = (req, res,) => {
                                             // isAdmin: user.isAdmin
                                         },
                                         token: jwt.sign(
-                                            { userId: user.id },
+                                            { userId: user.id, isAdmin: user.isAdmin },
                                             process.env.MY_TOKEN,
                                         )
                                     })
@@ -74,7 +74,7 @@ exports.login = (req, res,) => {
                             // isAdmin: user.isAdmin
                         },
                         token: jwt.sign(
-                            { userId: user.id },
+                            { userId: user.id, isAdmin: user.isAdmin },
                             process.env.MY_TOKEN,
                         )
                     });

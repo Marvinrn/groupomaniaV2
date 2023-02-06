@@ -109,8 +109,8 @@ const HomeContent = () => {
                             }
                             <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0</p>
                         </div>
-                        <button className={post.userId === user.userId ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
-                        { }
+                        {/* <button className={post.userId === user.userId ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button> */}
+                        <button className='btnIsVisible' onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
                     </div>
                 </div>
             ))}
