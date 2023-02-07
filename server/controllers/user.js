@@ -33,6 +33,7 @@ exports.signup = (req, res,) => {
                                         user: {
                                             email: user.email,
                                             userId: user.id,
+                                            role: user.role
                                             // isAdmin: user.isAdmin
                                         },
                                         token: jwt.sign(
@@ -71,6 +72,7 @@ exports.login = (req, res,) => {
                         user: {
                             email: user.email,
                             userId: user.id,
+                            role: user.role
                             // isAdmin: user.isAdmin
                         },
                         token: jwt.sign(

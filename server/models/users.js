@@ -24,7 +24,8 @@ const userSchema = mongoose.Schema({
         required: true,
         // minlength: 8
     },
-    isAdmin: { type: Boolean, default: false, require: true }
+    isAdmin: { type: Boolean, default: false, require: true },
+    role: { type: Boolean, default: false }
 });
 
 // permet de pas avoir plusieurs utilisateur avec la même adresse mail

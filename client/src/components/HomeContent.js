@@ -107,10 +107,10 @@ const HomeContent = () => {
                                 :
                                 <p><FontAwesomeIcon icon={faHeart} className='post__like' onClick={() => { handleOnLike(post._id) }} /> {post.likes} </p>
                             }
-                            <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0</p>
+                            <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0 </p>
                         </div>
                         {/* <button className={post.userId === user.userId ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button> */}
-                        <button className='btnIsVisible' onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
+                        <button className={post.userId === user.userId || user.role === true ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
                     </div>
                 </div>
             ))}
