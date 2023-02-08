@@ -26,7 +26,7 @@ const HomeTopBar = () => {
                     <FontAwesomeIcon className='topBar__icon' icon={faHouse} />
                 </a>
 
-                <a href='/home' className="topBar__link">
+                <a href='/profile' className="topBar__link">
                     <FontAwesomeIcon className='topBar__icon' icon={faUser} />
                 </a>
 
