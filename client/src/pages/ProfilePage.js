@@ -4,6 +4,7 @@ import HomeContent from '../components/HomeContent';
 import PostMessageBtn from '../components/PostMessageBtn';
 import Profile from '../components/Profile';
 
+
 const ProfilePage = () => {
     return (
         <div className='profilePage'>
