@@ -28,6 +28,7 @@ const userSchema = mongoose.Schema({
     role: { type: Boolean, default: false },
     bio: {
         type: String,
+        default: '',
         maxlength: 130
     }
 });
