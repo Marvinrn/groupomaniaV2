@@ -5,6 +5,8 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
+//component classique qui va afficher la topbar du site 
+
 const HomeTopBar = () => {
 
     const logout = () => {

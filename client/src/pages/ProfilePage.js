@@ -3,6 +3,7 @@ import HomeTopBar from '../components/HomeTopBar';
 import HomeContent from '../components/HomeContent';
 import PostMessageBtn from '../components/PostMessageBtn';
 import Profile from '../components/Profile';
+import EditProfileBtn from '../components/EditProfileBtn';
 
 
 const ProfilePage = () => {
@@ -12,6 +13,7 @@ const ProfilePage = () => {
             <Profile />
             <HomeContent />
             <PostMessageBtn />
+            <EditProfileBtn />
         </div>
     );
 };

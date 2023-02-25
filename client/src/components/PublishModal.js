@@ -3,6 +3,7 @@ import HomePostMessage from './HomePostMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
+//component qui gere le modal pour la publication de post
 
 const PublishModal = ({ modalIsClose }) => {
     let modalRef = useRef()

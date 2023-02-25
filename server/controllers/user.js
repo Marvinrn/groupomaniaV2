@@ -86,24 +86,18 @@ exports.login = (req, res,) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+
 exports.updateBio = (req, res) => {
-    User.updateOne({ _id: req.params.id }, { bio: req.body.bio })
-        .then(() => res.status(200).json({ message: 'Bio modifiée !' }))
+    User.findOne({ _id: req.params.id })
+        .then((bio) => {
+            if (bio.userId != req.auth.user) {
+                res.status(401).json({ error })
+            } else {
+                User.updateOne({ _id: req.params.id }, { bio: req.body.bio })
+                    .then(() => res.status(200).json({ message: 'Bio modifiée !' }))
+                    .catch(error => res.status(400).json({ error }))
+                console.log(req.body.bio);
+            }
+        })
         .catch(error => res.status(400).json({ error }))
-    console.log(req.body.bio);
 }
-
-
-// exports.updateBio = (req, res) => {
-//     User.findOne({ _id: req.params.id })
-//         .then((bio) => {
-//             if (bio.userId != req.auth.user) {
-//                 res.status(401).jscon({ error })
-//             } else {
-//                 User.updateOne({ _id: req.params.bio })
-//                     .then(() => res.status(200).json({ message: 'Bio modifiée !' }))
-//                     .catch(error => res.status(400).json({ error }))
-//             }
-//         })
-//         .catch(error => res.status(400).json({ error }))
-// }

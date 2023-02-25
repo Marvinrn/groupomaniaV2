@@ -20,6 +20,7 @@ const Login = () => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
+    // fonction qui va envoyer les données du form dans la base de donnée afin de connecter un user 
     const handleOnSubmit = (e) => {
         e.preventDefault()
         // setIsSubmit(true);

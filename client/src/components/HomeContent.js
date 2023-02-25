@@ -6,7 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-regular-svg-icons'
 import axios from 'axios';
 
-
+//component qui gere la page principale du site, celle ou il y a la timeline de tout les utilisateurs (timeline pas personnel comme sur twitter, ici on verra absolument tout les posts de chaques utilisateurs)
 
 const HomeContent = () => {
     const token = JSON.parse(localStorage.getItem('token'));
@@ -20,6 +20,8 @@ const HomeContent = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
+    // fonction fetchpost qui va nous permettre de récupérer tout les post et de les afficher 
     const fetchPosts = () => {
         axios.get('http://localhost:3001/api/post/', {
             headers: {
@@ -33,6 +35,7 @@ const HomeContent = () => {
             })
     }
 
+    // fonction handleonDelete qui va nous permettre de supprimer les post de la database
     const handleOnDelete = (id) => {
         axios.delete('http://localhost:3001/api/post/' + id, {
             headers: {
@@ -102,6 +105,7 @@ const HomeContent = () => {
                     <img src={post.imageUrl} alt='' className='content__img' />
                     <div className='like__section'>
                         <div className='post__btn'>
+                            {/* si le user fait parti des utilisateurs ayant like le post, on renvoi un coeur bleu et la possibilité d'unlike sinon un coeur gris et la possibilité de like */}
                             {post.usersLiked.includes(user.userId) ?
                                 <p><FontAwesomeIcon icon={faHeart} className={post.usersLiked.includes(user.userId) ? 'post__likeOnclick' : 'post__like'} onClick={() => { handleOnUnlike(post._id) }} /> {post.likes} </p>
                                 :
@@ -109,7 +113,7 @@ const HomeContent = () => {
                             }
                             <p><FontAwesomeIcon icon={faComment} className='post__comment' /> 0 </p>
                         </div>
-                        {/* <button className={post.userId === user.userId ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button> */}
+                        {/* si le user est celui qui a fait le post ou un admin alors il pourra avoir acces au bouton pour suprimer le post */}
                         <button className={post.userId === user.userId || user.role === true ? 'btnIsVisible' : 'btnIsNotVisible'} onClick={() => { handleOnDelete(post._id) }}>Supprimer</button>
                     </div>
                 </div>

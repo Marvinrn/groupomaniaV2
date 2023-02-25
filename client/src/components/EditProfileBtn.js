@@ -3,8 +3,9 @@ import EditProfileModal from './EditProfileModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
+//component qui affiche le bouton pour le modal edit profile
 
-const PostMessageBtn = () => {
+const EditProfileBtn = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     return (
@@ -21,4 +22,4 @@ const PostMessageBtn = () => {
     );
 };
 
-export default PostMessageBtn;
+export default EditProfileBtn;

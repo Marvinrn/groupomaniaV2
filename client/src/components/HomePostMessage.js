@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
+//component qui permet d'écrire un nouveau post accompagné d'une image ou non
 
 const HomePostMessage = () => {
     const [image, setImage] = useState(null)
@@ -14,7 +15,7 @@ const HomePostMessage = () => {
     const token = JSON.parse(localStorage.getItem('token'));
     const [count, setCount] = useState(0)
 
-
+    // fonction qui va nous permettre d'ajouter une image a notre champs afin de l'envoyer plus tard dans la base de donnée 
     const OnImageChange = (e) => {
         if (e.target && e.target.files[0]) {
             let image = e.target.files[0];
@@ -23,15 +24,17 @@ const HomePostMessage = () => {
         }
     }
 
-    // console.log(user.userId);
-
+    // fonction pour reset le champs apres avoir envoyé le post
     const reset = () => {
         setImage(null);
         content.current.value = ''
     }
 
+
+    // fontion qui va nous permettre d'envoyer les données du post dans la base de donnée afin de les récupérer et de les afficher sur la timeline principale du site
     const postHandleOnClick = (e) => {
         e.preventDefault();
+        // postData qui contient la valeur de notre input ainsi que les files s'il y en a
         const postData = {
             content: content.current.value,
             image: image

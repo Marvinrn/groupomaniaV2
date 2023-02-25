@@ -2,6 +2,7 @@ import React from 'react';
 import Avi from '../assets/icon.png';
 import EditProfileBtn from '../components/EditProfileBtn';
 
+//component qui va afficher les infos des utilisateurs qu'ils pourront modifier 
 
 const Profile = () => {
     return (

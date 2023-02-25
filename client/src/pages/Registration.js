@@ -22,7 +22,7 @@ const Registration = () => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
-    //fonction handle on submit pour lorsque qu'on submit le formulaire et renvoi les erreurs s'ils y en a
+    // fonction qui va envoyer les données du form dans la base de donnée afin de créer un user
     const handleOnSubmit = (e) => {
         e.preventDefault()
         setFormErrors(handleValidation(newUser))
@@ -58,7 +58,7 @@ const Registration = () => {
         }
     }, [formErrors, isSubmit, newUser])
 
-    // fonction pour gerer les erreurs des formulaires
+    // fonction pour gerer les erreurs des formulaires avec des regex
     const handleValidation = (values) => {
         const errors = {};
         const regexEmail = /^\w+(\[\+\.-\]?\w)*@\w+(\[\.-\]?\w+)*\.[a-z]+$/i;

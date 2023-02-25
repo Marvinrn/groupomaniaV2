@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GroupomaniaLogo from '../assets/icon-left-font-monochrome-white.svg'
 
+// component classique qui va afficher la nav bar du site lors du login et du sign up
+
 const NavBar = () => {
     return (
         <div className="navbar">

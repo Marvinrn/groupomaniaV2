@@ -23,16 +23,17 @@ exports.createPost = (req, res) => {
     console.log(req.file);
 }
 
-exports.updatePost = (req, res) => {
-    const postObject = req.file ?
-        {
-            ...JSON.parse(req.body.post),
-            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : { ...req.body }
-    Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Objet modifié !' }))
-        .catch(error => res.status(400).json({ error }));
-}
+// si j'amais plus tard j'ai envie de mettre en place l'edit de post
+// exports.updatePost = (req, res) => {
+//     const postObject = req.file ?
+//         {
+//             ...JSON.parse(req.body.post),
+//             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+//         } : { ...req.body }
+//     Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+//         .then(() => res.status(200).json({ message: 'Objet modifié !' }))
+//         .catch(error => res.status(400).json({ error }));
+// }
 
 exports.deletePost = (req, res) => {
     // on trouve l'objet dans la base de donnée

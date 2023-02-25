@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import EditProfile from './EditProfile';
 
+//component qui gere le modal pour l'edit profile de l'user 
 
 const PublishModal = ({ modalIsClose }) => {
     let modalRef = useRef()
