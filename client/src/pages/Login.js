@@ -23,7 +23,6 @@ const Login = () => {
     // fonction qui va envoyer les données du form dans la base de donnée afin de connecter un user 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        // setIsSubmit(true);
 
         axios.post("http://localhost:3001/api/auth/login", {
             email: data.email,

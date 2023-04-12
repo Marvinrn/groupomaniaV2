@@ -99,5 +99,5 @@ exports.updateBio = (req, res) => {
                 console.log(req.body.bio);
             }
         })
-        .catch(error => res.status(400).json({ error }))
+        .catch(error => res.status(400).json({ error }));
 }
