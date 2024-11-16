@@ -52,7 +52,7 @@ const HomeContent = () => {
 
 
 
-    // fonction pour ajouter un like au post
+    // fonction pour ajouter un like au post 
     const handleOnLike = (id) => {
         const data = {
             userId: user.userId,
